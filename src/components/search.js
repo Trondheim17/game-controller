@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { Component } from 'react'
 
 class Search extends Component {
@@ -17,9 +16,10 @@ class Search extends Component {
     }
 
    render(){
+       console.log(this.state.userInput)
        return(
            <div>
-               <input placeholder='Search Game Titles'/>
+               <input onChange={this.handleChange} placeholder='Search Game Titles'/>
                <button onClick={() => this.props.handleClick(this.state.userInput)}> Search </button>
            </div>
        )

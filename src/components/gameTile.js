@@ -1,9 +1,11 @@
 import React from 'react'
-import GamesList from './gameList'
 
-const GameTile = () => {
+const GameTile = (props) => {
     return (
-        <div> </div>
+        <div>
+            <div className='gameImage' title={props.game.name} style={{backgroundImage: `url(${props.game.image.small_url})`}} />
+            <div className='gameTitle'>{props.game.name}</div>
+        </div>
     )
 }
 
