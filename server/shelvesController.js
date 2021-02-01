@@ -5,18 +5,20 @@ module.exports = {
         res.status(200).send(shelvesArr)
     },
     addGame: (req, res) => {
-        const { id, title, isInLibrary, isInWishlist, isInWishlist} = req.body
-        const newGame = { id, title, isInLibrary, isInWishlist, isInWishlist}
+        const { id, title, isInLibrary, isInWishlist, isInCompleted } = req.body
+        const newGame = { id, title, isInLibrary, isInWishlist, isInCompleted }
         shelvesArr.push(newGame)
         res.status(200).send(shelvesArr)
     },
     editShelf: (req, res) => {
-        const i = shelvesArr.findIndex(shelvesArr => shelvesArr.id === +req.params.id)
-        shelvesArr[i].complete = !todos[i].complete
-        res.status(200).send(todos)
+        const { key } = req.body
+        shelvesArr[i][key] = !shelvesArr[i][key]
+        res.status(200).send(shelvesArr)
     },
     deleteGame: (req, res) => {
-        
+        const i = shelvesArr.findIndex(game => game.id === +req.params.id)
+        shelvesArr.splice(i, 1)
+        res.status(200).send(shelvesArr)
     }
 
 }
