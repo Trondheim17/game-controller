@@ -14,21 +14,30 @@ class App extends Component {
       gamesList: [],
       shelvesList: [],
 
-      }
+    }
 
-      this.handleAddToLibrary = this.handleAddToLibrary.bind(this)
+    this.handleAddToLibrary = this.handleAddToLibrary.bind(this)
+    this.handleAddToWishlist = this.handleAddToWishlist.bind(this)
   }
 
 
   handleAddToLibrary = (game) => {
-    const { id, name} = game
-    axios.post(`/api/shelves`, {id, name})
-    .then(res => {
-      this.setState({
-        shelvesList: [...this.state.shelvesList, res.data]
-      })
-    }).catch(err => console.log(err))
-}
+    axios.post(`/api/shelves/addToLibrary`, {...game})
+      .then(res => {
+        this.setState({
+          shelvesList: res.data
+        })
+      }).catch(err => console.log(err))
+  }
+
+  handleAddToWishlist = (game) => {
+    axios.post(`/api/shelves/addToWishlist`, {...game})
+      .then(res => {
+        this.setState({
+          shelvesList: res.data
+        })
+      }).catch(err => console.log(err))
+  }
 
   render() {
     return (
@@ -36,8 +45,10 @@ class App extends Component {
         <header className="App-header">
           <Header />
         </header>
-        <GamesList handleAddToLibrary={this.handleAddToLibrary}/>
-        <ShelvesContainer shelvesList={this.state.shelvesList}/>
+        <div className='mainContainer'>
+        <GamesList handleAddToLibrary={this.handleAddToLibrary} handleAddToWishlist={this.handleAddToWishlist}/>
+        <ShelvesContainer shelvesList={this.state.shelvesList} />
+        </div>
       </div>
 
     );

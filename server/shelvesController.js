@@ -4,9 +4,13 @@ module.exports = {
     getGames: (res, req) => {
         res.status(200).send(shelvesArr)
     },
-    addGame: (req, res) => {
-        const { id, name } = req.body
-        const newGame = { id, name, isInLibrary: true, isInWishlist: false, isInComplete: false }
+    addGameToLibrary: (req, res) => {
+        const newGame = { ...req.body, isInLibrary: true, isInWishlist: false, isInComplete: false }
+        shelvesArr.push(newGame)
+        res.status(200).send(shelvesArr)
+    },
+    addGameToWishlist: (req, res) => {
+        const newGame = { ...req.body, isInLibrary: false, isInWishlist: true, isInComplete: false }
         shelvesArr.push(newGame)
         res.status(200).send(shelvesArr)
     },

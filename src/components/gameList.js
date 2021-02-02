@@ -41,11 +41,11 @@ class GamesList extends Component {
         const { allGames } = this.state
         let mappedAllGames = allGames.map((game, index) => {
             return (
-                <GameTile key={game.id} game={game} handleAddToLibrary={this.props.handleAddToLibrary}/>
+                <GameTile key={game.id} game={game} handleAddToLibrary={this.props.handleAddToLibrary} handleAddToWishlist={this.props.handleAddToWishlist}/>
             )
         })
         return (
-            <div>
+            <div className='gamesList'>
                 <h2>All Games</h2>
                 <Search handleSearch={this.handleSearch}/>
                 {mappedAllGames}
