@@ -9,8 +9,8 @@ app.use(express.json())
 app.get(`/api/games`, gameCtrl.getGames)
 app.post(`/api/shelves`, shelvesCtrl.addGame)
 app.get(`/api/shelves`, shelvesCtrl.getGames)
-app.put(`/api/shelves`, shelvesCtrl.editShelf)
-app.delete(`/api/shelves`, shelvesCtrl.deleteGame)
+app.put(`/api/shelves/:id`, shelvesCtrl.editShelf)
+app.delete(`/api/shelves/:id`, shelvesCtrl.deleteGame)
 
 const port = 4000
 app.listen(port, () => console.log(`Server is listening on port: ${port}`))

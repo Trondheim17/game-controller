@@ -3,6 +3,8 @@ import './Reset.css'
 import './App.css';
 import Header from './components/header'
 import GamesList from './components/gameList'
+import ShelvesContainer from './components/shelves'
+const axios = require('axios')
 
 class App extends Component {
   constructor() {
@@ -10,9 +12,23 @@ class App extends Component {
 
     this.state = {
       gamesList: [],
+      shelvesList: [],
 
       }
+
+      this.handleAddToLibrary = this.handleAddToLibrary.bind(this)
   }
+
+
+  handleAddToLibrary = (game) => {
+    const { id, name} = game
+    axios.post(`/api/shelves`, {id, name})
+    .then(res => {
+      this.setState({
+        shelvesList: [...this.state.shelvesList, res.data]
+      })
+    }).catch(err => console.log(err))
+}
 
   render() {
     return (
@@ -20,7 +36,8 @@ class App extends Component {
         <header className="App-header">
           <Header />
         </header>
-        <GamesList />
+        <GamesList handleAddToLibrary={this.handleAddToLibrary}/>
+        <ShelvesContainer shelvesList={this.state.shelvesList}/>
       </div>
 
     );

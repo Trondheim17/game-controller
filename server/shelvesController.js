@@ -5,8 +5,8 @@ module.exports = {
         res.status(200).send(shelvesArr)
     },
     addGame: (req, res) => {
-        const { id, title, isInLibrary, isInWishlist, isInCompleted } = req.body
-        const newGame = { id, title, isInLibrary, isInWishlist, isInCompleted }
+        const { id, name } = req.body
+        const newGame = { id, name, isInLibrary: true, isInWishlist: false, isInComplete: false }
         shelvesArr.push(newGame)
         res.status(200).send(shelvesArr)
     },

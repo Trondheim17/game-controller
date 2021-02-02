@@ -20,7 +20,7 @@ class Search extends Component {
        return(
            <div>
                <input onChange={this.handleChange} placeholder='Search Game Titles'/>
-               <button onClick={() => this.props.handleClick(this.state.userInput)}> Search </button>
+               <button onClick={() => this.props.handleSearch(this.state.userInput)}> Search </button>
            </div>
        )
    }

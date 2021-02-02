@@ -11,7 +11,7 @@ class GamesList extends Component {
             allGames: []
         }
 
-        this.handleClick = this.handleClick.bind(this)
+        this.handleSearch = this.handleSearch.bind(this)
     }
 
     componentDidMount = () => {
@@ -28,29 +28,26 @@ class GamesList extends Component {
             }).catch(err => console.log(err))
     }
 
-    handleClick = (userInput) => {
-        console.log(userInput)
+    handleSearch = (userInput) => {
         axios.get(`/api/games?name=${userInput}`)
             .then(res => {
-                console.log(res)
                 this.setState({
                     allGames: res.data.results
                 })
             }).catch(err => console.log(err))
     }
-    
-    
+
     render() {
         const { allGames } = this.state
         let mappedAllGames = allGames.map((game, index) => {
             return (
-                <GameTile key={game.id} game={game}/>
+                <GameTile key={game.id} game={game} handleAddToLibrary={this.props.handleAddToLibrary}/>
             )
         })
         return (
             <div>
                 <h2>All Games</h2>
-                <Search handleClick={this.handleClick}/>
+                <Search handleSearch={this.handleSearch}/>
                 {mappedAllGames}
             </div>
         )
