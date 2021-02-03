@@ -4,13 +4,18 @@ import GameTile from "./gameTile";
 const Shelf = (props) => {
     const filteredGames = props.gamesInShelf.map((game) => {
         return (
-            <GameTile key={game.id} game={game} />
+            <GameTile gameTileType={'shelf'} shelfType={props.name} key={game.id} game={game} 
+                        handleAddToShelf={props.handleAddToShelf} 
+                        handleRemoveFromShelf={props.handleRemoveFromShelf} 
+                        handleEditShelf={props.handleEditShelf}/>
         )
     })
     return (
-        <div>
+        <div className='shelf'>
             <h2>{props.name}</h2>
-            {filteredGames}
+            <div className='gamesInShelf'>
+                {filteredGames}
+            </div>
         </div>
     )
 }

@@ -8,9 +8,9 @@ const ShelvesContainer = (props) => {
     const inCompleteFilter = shelvesList.filter(game => game.isInComplete)
     return (
         <div>
-            <Shelf name={'Library'} gamesInShelf={inLibraryFilter}/>
-            <Shelf name={'Wishlist'} gamesInShelf={inWishlistFilter}/>
-            <Shelf name={'Complete'} gamesInShelf={inCompleteFilter}/>
+            <Shelf name={'Library'} gamesInShelf={inLibraryFilter} handleAddToShelf={props.handleAddToShelf} handleRemoveFromShelf={props.handleRemoveFromShelf} handleEditShelf={props.handleEditShelf}/>
+            <Shelf name={'Wishlist'} gamesInShelf={inWishlistFilter} handleAddToShelf={props.handleAddToShelf} handleRemoveFromShelf={props.handleRemoveFromShelf} handleEditShelf={props.handleEditShelf}/>
+            <Shelf name={'Complete'} gamesInShelf={inCompleteFilter} handleAddToShelf={props.handleAddToShelf} handleRemoveFromShelf={props.handleRemoveFromShelf} handleEditShelf={props.handleEditShelf}/>
         </div>
     )
 }

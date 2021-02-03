@@ -16,13 +16,14 @@ class App extends Component {
 
     }
 
-    this.handleAddToLibrary = this.handleAddToLibrary.bind(this)
-    this.handleAddToWishlist = this.handleAddToWishlist.bind(this)
+    this.handleAddToShelf = this.handleAddToShelf.bind(this)
+    this.handleRemoveFromShelf = this.handleRemoveFromShelf.bind(this)
+    this.handleEditShelf = this.handleEditShelf.bind(this)
   }
 
 
-  handleAddToLibrary = (game) => {
-    axios.post(`/api/shelves/addToLibrary`, {...game})
+  handleAddToShelf = (game, shelf) => {
+    axios.post(`/api/shelves`, {game, shelf})
       .then(res => {
         this.setState({
           shelvesList: res.data
@@ -30,13 +31,22 @@ class App extends Component {
       }).catch(err => console.log(err))
   }
 
-  handleAddToWishlist = (game) => {
-    axios.post(`/api/shelves/addToWishlist`, {...game})
-      .then(res => {
-        this.setState({
-          shelvesList: res.data
-        })
-      }).catch(err => console.log(err))
+  handleRemoveFromShelf = (game) => {
+    axios.delete(`/api/shelves/${game.id}`)
+    .then(res => {
+      this.setState({
+        shelvesList: res.data
+      })
+    }).catch(err => console.log(err))
+  }
+
+  handleEditShelf = (game, shelf) => {
+    axios.put(`/api/shelves/${game.id}`, {shelf})
+    .then(res => {
+      this.setState({
+        shelvesList: res.data
+      })
+    }).catch(err => console.log(err))
   }
 
   render() {
@@ -46,8 +56,8 @@ class App extends Component {
           <Header />
         </header>
         <div className='mainContainer'>
-        <GamesList handleAddToLibrary={this.handleAddToLibrary} handleAddToWishlist={this.handleAddToWishlist}/>
-        <ShelvesContainer shelvesList={this.state.shelvesList} />
+        <GamesList handleAddToShelf={this.handleAddToShelf} />
+        <ShelvesContainer shelvesList={this.state.shelvesList} handleAddToShelf={this.handleAddToShelf} handleRemoveFromShelf={this.handleRemoveFromShelf} handleEditShelf={this.handleEditShelf}/>
         </div>
       </div>
 

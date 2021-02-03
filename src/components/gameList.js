@@ -17,7 +17,6 @@ class GamesList extends Component {
     componentDidMount = () => {
         this.getGames()
     }
-    
 
     getGames = () => {
         axios.get(`api/games`)
@@ -41,14 +40,16 @@ class GamesList extends Component {
         const { allGames } = this.state
         let mappedAllGames = allGames.map((game, index) => {
             return (
-                <GameTile key={game.id} game={game} handleAddToLibrary={this.props.handleAddToLibrary} handleAddToWishlist={this.props.handleAddToWishlist}/>
+                <GameTile gameTileType={'gameList'} key={game.id} game={game} handleAddToShelf={this.props.handleAddToShelf} />
             )
         })
         return (
-            <div className='gamesList'>
+            <div className='gamesListContainer'>
                 <h2>All Games</h2>
-                <Search handleSearch={this.handleSearch}/>
-                {mappedAllGames}
+                <Search handleSearch={this.handleSearch} />
+                <div className='gamesList'>
+                    {mappedAllGames}
+                </div>
             </div>
         )
     }
