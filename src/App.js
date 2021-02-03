@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './Reset.css'
 import './App.css';
-import Header from './components/header'
-import GamesList from './components/gameList'
-import ShelvesContainer from './components/shelves'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import GamesList from './components/GameList'
+import ShelvesContainer from './components/Shelves'
 const axios = require('axios')
 
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
         <GamesList handleAddToShelf={this.handleAddToShelf} />
         <ShelvesContainer shelvesList={this.state.shelvesList} handleAddToShelf={this.handleAddToShelf} handleRemoveFromShelf={this.handleRemoveFromShelf} handleEditShelf={this.handleEditShelf}/>
         </div>
+        <Footer />
       </div>
 
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Search from './search'
-import GameTile from './gameTile'
+import Search from './Search'
+import GameTile from './GameTile'
 import axios from 'axios'
 
 class GamesList extends Component {
@@ -8,7 +8,8 @@ class GamesList extends Component {
         super()
 
         this.state = {
-            allGames: []
+            allGames: [],
+            pageNumber: 0,
         }
 
         this.handleSearch = this.handleSearch.bind(this)
@@ -19,7 +20,7 @@ class GamesList extends Component {
     }
 
     getGames = () => {
-        axios.get(`api/games`)
+        axios.get(`/api/games`)
             .then(res => {
                 this.setState({
                     allGames: res.data.results
@@ -35,6 +36,7 @@ class GamesList extends Component {
                 })
             }).catch(err => console.log(err))
     }
+
 
     render() {
         const { allGames } = this.state

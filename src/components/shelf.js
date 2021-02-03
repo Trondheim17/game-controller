@@ -1,5 +1,5 @@
 import React from "react";
-import GameTile from "./gameTile";
+import GameTile from "./GameTile";
 
 const Shelf = (props) => {
     const filteredGames = props.gamesInShelf.map((game) => {
