@@ -42,13 +42,13 @@
 .mainContainer {
   display: flex;
   flex-direction: row;
-  height: 90vh;
+  height: 85vh;
   width: 100vw
 }
 
 .gamesListContainer {
   height: 85vh;
-  width: 74%;
+  width: 90vw;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -84,12 +84,13 @@
 }
 
 .shelf {
-  width: 550px;
-  height: 30.3%;
+  width: 30vw;
+  height: 80vh;
   margin: 10px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  z-index: 0;
 }
 
 .gamesInShelf {
@@ -104,6 +105,7 @@
   width: 350px;
   height: 100px;
   border-radius: 5px;
+  z-index: 0;
 }
 
 .button {
@@ -133,6 +135,7 @@ h2 {
   font-size: 24px;
   font-family: Arial, Helvetica, sans-serif;
   margin: 5px 15px 15px 15px;
+  position: sticky
 }
 
 .searchButton {
@@ -160,4 +163,15 @@ h2 {
   text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
   box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.4s ease 0s;
+}
+
+.shelfButton {
+  width: 100px;
+  height: 25px;
+}
+
+.shelfButtonRow {
+  height: 25px;
+  width: 30vw;
+  margin: 5px
 }

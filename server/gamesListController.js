@@ -8,7 +8,7 @@ module.exports = {
                     res.status(200).send(response.data)
                 }).catch(err => res.status(502).send(err.toString()))
         } else {
-            axios.get(`https://www.giantbomb.com/api/games?api_key=${process.env.GIANT_BOMB_KEY}&format=json`)
+            axios.get(`https://www.giantbomb.com/api/games?api_key=${process.env.GIANT_BOMB_KEY}&offset=${req.query.offset}&format=json`)
                 .then(response => {
                     res.status(200).send(response.data)
                 }).catch(err => res.status(502).send(err.toString()))

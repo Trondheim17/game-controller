@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Search from './Search'
 import GameTile from './GameTile'
 import axios from 'axios'
+import Button from './Button'
 
 class GamesList extends Component {
     constructor() {
@@ -20,10 +21,11 @@ class GamesList extends Component {
     }
 
     getGames = () => {
-        axios.get(`/api/games`)
+        axios.get(`/api/games?offset=${this.state.pageNumber*100}`)
             .then(res => {
                 this.setState({
-                    allGames: res.data.results
+                    allGames: [...this.state.allGames, ...res.data.results],
+                    pageNumber: this.state.pageNumber + 1
                 })
             }).catch(err => console.log(err))
     }
@@ -52,6 +54,7 @@ class GamesList extends Component {
                 <div className='gamesList'>
                     {mappedAllGames}
                 </div>
+                <Button onClick={this.getGames} name='Load More'/>
             </div>
         )
     }
