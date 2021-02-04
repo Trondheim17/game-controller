@@ -21,6 +21,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.gameCartridge{
+  align-self: flex-start;
+  background-color: #f6f6f6;
+  width: 50px;
+  height: 500px
+}
+
 .footer {
   height: 5vh;
   width: 100vw;

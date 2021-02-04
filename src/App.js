@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import './Reset.css'
 import './App.css';
 import Header from './components/Header'
+// import Logo from './components/Logo'
 import Footer from './components/Footer'
-import GamesList from './components/GameList'
-import ShelvesContainer from './components/Shelves'
+import GamesList from './components/gameList'
+import ShelvesContainer from './components/shelves'
 const axios = require('axios')
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          {/* <Logo /> */}
           <Header />
         </header>
         <div className='mainContainer'>
